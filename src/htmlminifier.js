@@ -55,12 +55,12 @@
     preserveAfter = lineBreakAfter.test(str) ? '\n' : ' ',
     lineBreakStamp = 'htmlmincollapsedlinebreak';
 
-    if (prevTag && prevTag !== 'img' && prevTag !== 'input' && (prevTag.substr(0,1) !== '/'
+    if (prevTag && (prevTag.substr(0,1) !== '/'
       || ( prevTag.substr(0,1) === '/' && tags.indexOf(prevTag.substr(1)) === -1))) {
       str = str.replace(/^\s+/, options.conservativeCollapse ? ' ' : options.preserveLineBreaks ? preserveBefore : '');
     }
 
-    if (nextTag && nextTag !== 'img' && nextTag !== 'input' && (nextTag.substr(0,1) === '/'
+    if (nextTag && (nextTag.substr(0,1) === '/'
       || ( nextTag.substr(0,1) !== '/' && tags.indexOf(nextTag) === -1))) {
       str = str.replace(/\s+$/, options.conservativeCollapse ? ' ' : options.preserveLineBreaks ? preserveAfter : '');
     }
@@ -74,14 +74,9 @@
       }
       // strip non space whitespace then compress spaces to one
 
-      str = str
+      return str
             .replace(/[\t\n\r]+/g, ' ').replace(/[ ]+/g, ' ')
             .replace(new RegExp(lineBreakStamp, 'g'), '\n');
-
-      if (str.length === 1) {
-          str = '';
-      }
-      return str;
     }
 
     return str;
