@@ -631,9 +631,9 @@
           .replace(lineBreakBefore, lineBreakStamp)
           .replace(lineBreakAfter, lineBreakStamp);
       }
-      // strip non space whitespace then compress spaces to one
+      // strip non space whitespace then compress spaces to zero
       return str
-        .replace(/[\t\n\r]+/g, ' ').replace(/[ ]+/g, ' ')
+        .replace(/[\t\n\r]+/g, ' ').replace(/[ ]+/g, '')
         .replace(new RegExp(lineBreakStamp, 'g'), '\n');
     }
 
