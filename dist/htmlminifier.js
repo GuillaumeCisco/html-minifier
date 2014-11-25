@@ -631,10 +631,16 @@
           .replace(lineBreakBefore, lineBreakStamp)
           .replace(lineBreakAfter, lineBreakStamp);
       }
-      // strip non space whitespace then compress spaces to zero
-      return str
-        .replace(/[\t\n\r]+/g, ' ').replace(/[ ]+/g, '')
-        .replace(new RegExp(lineBreakStamp, 'g'), '\n');
+      // strip non space whitespace then compress spaces to one
+      
+      str = str
+            .replace(/[\t\n\r]+/g, ' ').replace(/[ ]+/g, ' ')
+            .replace(new RegExp(lineBreakStamp, 'g'), '\n');
+
+      if (str.length === 1) {
+          str = '';
+      }
+      return str;
     }
 
     return str;
